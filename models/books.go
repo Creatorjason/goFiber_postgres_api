@@ -1,0 +1,19 @@
+package models
+
+import "gorm.io/gorm"
+
+type Books struct {
+	ID          uint 		`gorm:"primaryKey;autoIncrement" json:"id"`
+	Author      *string		`json:"author"`
+	Title       *string		`json:"title"`
+	Description *string		`json:"desc"`
+	Publisher   *string		`json:"publisher"`
+}
+
+
+//  Register model
+// @params instance of gorm.DB
+func MigrateBooks(db *gorm.DB) error{
+	err :=  db.AutoMigrate(&Books{})
+	return err
+}
